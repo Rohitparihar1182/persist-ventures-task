@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Banner from "./componenets/banner";
+import Navbar from "./componenets/navbar";
+import NewsGallery from "./componenets/newsGallery";
+import ScrollToTop from "./componenets/scrollToTop";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {
+	createBrowserRouter,
+	RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: (
+			<HomePage />
+		),
+	},
+	{
+		path: "about",
+		element: <div>About</div>,
+	},
+]);
+
+export default function App() {
+	return <RouterProvider router={router} />;
 }
 
-export default App;
+function HomePage() {
+	return (
+		<>
+			<Navbar />
+			<Banner />
+			<NewsGallery />
+			<ScrollToTop />
+		</>
+	);
+};
