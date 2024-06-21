@@ -1,6 +1,8 @@
-import { format, parseISO } from "date-fns";
 import { useMemo, useState } from "react";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { getPaginationPages, calculateReadingTime, filterData, formatDate, trimDescription, trimTitle, createNewsApiSearchQuery } from "../../../util/helpers";
+import { Link } from "react-router-dom";
+
 
 const MAX_NEWS_PER_PAGE = 20;
 
@@ -36,18 +38,20 @@ export default function Gallery({ data }) {
 	return (
 		<div className="mx-auto px-8 py-16 ">
 			<div className="grid grid-cols-1 gap-6 xl:gap-8 md:grid-cols-3 lg:grid-cols-4">
-				{filteredNews.map((item) => (
+				{filteredNews.map((item) => {
+					const query = createNewsApiSearchQuery(item)
+					return (
 					<div
 						className="shadow-lg flex flex-col gap-2 mb-8"
 						key={item.url}
 					>
-						<div className="relative w-full pb-[56.25%] rounded-tl-md rounded-tr-md overflow-hidden">
+						<Link to={`news?query=${query}`} className="block relative w-full pb-[56.25%] rounded-tl-md rounded-tr-md overflow-hidden">
 							<img
 								className="absolute top-0 left-0 w-full h-full object-cover"
 								src={item?.urlToImage}
 								alt={item?.title}
 							/>
-						</div>
+						</Link>
 						<div className="mt-3">
 							<span className="py-[6px] px-4 bg-white/10 text-xs rounded-[50px] font-semibold">
 								{item?.source?.name}
@@ -62,16 +66,16 @@ export default function Gallery({ data }) {
 								)}
 							</p>
 						</div>
-						<div className="mt-3">
+						<Link to={`news?query=${query}`} className="block mt-3">
 							<h3 className=" text-[18px] font-bold">
-								{item?.title}
+								{trimTitle(item?.title)}
 							</h3>
-						</div>
-						<div>
+						</Link>
+						<Link to={`news?query=${query}`} className="block">
 							<p>{trimDescription(item?.description)}</p>
-						</div>
+						</Link>
 					</div>
-				))}
+				)})}
 			</div>
             {/* pagination */}
             <div className="flex justify-center gap-3">
@@ -91,67 +95,4 @@ export default function Gallery({ data }) {
             </div>
 		</div>
 	);
-}
-
-function filterData(data) {
-	const newData = data.filter((item) => {
-		for (let key in item) {
-			if (item[key] === null) {
-				return false;
-			}
-		}
-		return true;
-	});
-	return newData;
-}
-
-function formatDate(date) {
-	const dateObj = parseISO(date);
-	const formattedDate = format(dateObj, "MMMM d, yyyy");
-
-	return formattedDate;
-}
-
-function calculateReadingTime(wordCount, wordsPerMinute = 200) {
-	const minutes = wordCount / wordsPerMinute;
-	const readTime = Math.ceil(minutes);
-	return `${readTime} minute${readTime > 1 ? "s" : ""} read`;
-}
-
-function trimDescription(text) {
-	return text.slice(0, 100) + "...";
-}
-
-function getPaginationPages(activePage, totalPages) {
-    const visiblePages = 5; 
-    const pages = [];
-
-    if (totalPages <= visiblePages) {
-        for (let i = 1; i <= totalPages; i++) {
-            pages.push(i);
-        }
-    } else {
-        const startPage = Math.max(1, activePage - Math.floor(visiblePages / 2));
-        const endPage = Math.min(totalPages, activePage + Math.floor(visiblePages / 2));
-
-        if (startPage > 1) {
-            pages.push(1);
-            if (startPage > 2) {
-                pages.push('...');
-            }
-        }
-
-        for (let i = startPage; i <= endPage; i++) {
-            pages.push(i);
-        }
-
-        if (endPage < totalPages) {
-            if (endPage < totalPages - 1) {
-                pages.push('...');
-            }
-            pages.push(totalPages);
-        }
-    }
-
-    return pages;
 }

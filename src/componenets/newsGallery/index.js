@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useGetEverythingQuery } from "../../state/news/apiSlice";
 import Gallery from "./componenets/gallery";
+import Loading from "./componenets/loading";
 
 export default function NewsGallery() {
 	const [searchParams] = useSearchParams();
@@ -14,12 +15,12 @@ export default function NewsGallery() {
 		isLoading,
 	} = useGetEverythingQuery(category);
 
-	const content = isLoading ? (
-		<div>Loading... </div>
+	const content = isSuccess ? (
+		<Gallery data={news?.articles} />
 	) : isError ? (
 		<div>{error.message}</div>
 	) : (
-		<Gallery data={news?.articles} />
+		<Loading />
 	);
 
 	return <div>{content}</div>;

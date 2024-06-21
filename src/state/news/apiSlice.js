@@ -11,7 +11,7 @@ export const newsApi = createApi({
 			query: (searchQuery) => `everything?q=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}`,
 		}),
         searchNews: builder.query({
-            query: (searchQuery) => `everything?q=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}`
+            query: (searchQuery) => `top-headlines?${searchQuery}apiKey=${process.env.REACT_APP_API_KEY}`
         })
 	}),
 });
