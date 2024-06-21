@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom"
-import { useGetEverythingQuery, useSearchNewsQuery } from "../../state/news/apiSlice";
+import { useGetEverythingQuery } from "../../state/news/apiSlice";
 import { createQuery, filterData } from "../../util/helpers";
 import Gallery from "../../componenets/searchGallery";
 

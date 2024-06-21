@@ -21,7 +21,7 @@ export default function Gallery({ data }) {
         return newFilteredNews;
     }, [news, page])
 
-    const maxPages = useMemo(() => getPaginationPages(page, numberOfPages), []);
+    const maxPages = useMemo(() => getPaginationPages(page, numberOfPages), [numberOfPages, page]);
 
     const handlePage = (data) => {
 		if(data === "prev") {

@@ -23,12 +23,12 @@ function SingleSkeleto() {
 				<p className="bg-gray-700 w-1/4 h-4"></p>
 			</div>
 			<div className="block mt-3">
-				<h3 className="bg-gray-700 text-[18px] font-bold w-3/4 h-6"></h3>
+				<div className="bg-gray-700 text-[18px] font-bold w-3/4 h-6"></div>
 			</div>
 			<div className="block mt-2">
-				<p className="bg-gray-700 w-full h-4 mb-1"></p>
-				<p className="bg-gray-700 w-full h-4 mb-1"></p>
-				<p className="bg-gray-700 w-full h-4"></p>
+				<div className="bg-gray-700 w-full h-4 mb-1"></div>
+				<div className="bg-gray-700 w-full h-4 mb-1"></div>
+				<div className="bg-gray-700 w-full h-4"></div>
 			</div>
 		</div>
 	);

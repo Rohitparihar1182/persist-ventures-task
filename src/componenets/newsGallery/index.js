@@ -12,7 +12,6 @@ export default function NewsGallery() {
 		isError,
 		isSuccess,
 		error,
-		isLoading,
 	} = useGetEverythingQuery(category);
 
 	const content = isSuccess ? (

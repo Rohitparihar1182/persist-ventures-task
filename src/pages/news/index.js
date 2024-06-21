@@ -46,7 +46,7 @@ export default function NewsPage() {
 					</a>{" "}
 					Does not allow to view the full content
 				</h3>
-				<a className="underline text-amber-500 block mt-5" target="_blank" href={post.url}>
+				<a className="underline text-amber-500 block mt-5" rel="noopener noreferrer" target="_blank" href={post.url}>
 					Click here to view the full article
 				</a>
 			</div>

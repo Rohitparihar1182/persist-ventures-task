@@ -16,7 +16,6 @@ export default function Banner() {
 
 	const {
 		data: topNews,
-		isLoading,
 		isSuccess,
 		error,
 		isError,
