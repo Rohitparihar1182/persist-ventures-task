@@ -5,10 +5,10 @@ export const newsApi = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: "https://newsapi.org/v2/" }),
 	endpoints: (builder) => ({
 		getTopHeadlines: builder.query({
-			query: (country) => `top-headlines?country=${country}&apiKey=${process.env.REACT_APP_API_KEY}`,
+			query: ({country, category}) => `top-headlines?country=${country}&category=${category}&apiKey=${process.env.REACT_APP_API_KEY}`,
 		}),
 		getEverything: builder.query({
-			query: (country) => `everything?q=entertainment&apiKey=${process.env.REACT_APP_API_KEY}`,
+			query: (searchQuery) => `everything?q=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}`,
 		}),
         searchNews: builder.query({
             query: (searchQuery) => `everything?q=${searchQuery}&apiKey=${process.env.REACT_APP_API_KEY}`

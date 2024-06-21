@@ -1,7 +1,7 @@
 import Logo from "../../assets/logo.png";
 import { useSearchParams } from "react-router-dom";
-import useScrollY from "../../hooks/useScrollY";
 import { IoSearch } from "react-icons/io5";
+import { useMemo } from "react";
 
 const navLinks = [
 	"business",
@@ -14,13 +14,16 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-    const scrollY = useScrollY();
-
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const handleClick = (newValue) => {
 		setSearchParams({ category: newValue }); 
 	};
+
+	const activeLink = useMemo(() => {
+		if(!searchParams.get("category")) return navLinks[0];
+		else return searchParams.get("category")
+	}, [searchParams])
 
 	return (
 		<div className={`fixed top-0 left-0 h-16 w-full z-20 border-b border-gray-100/20 bg-black/50 backdrop-blur-md`}>
@@ -41,7 +44,7 @@ export default function Navbar() {
                 </div>
 				<div className="ml-auto flex gap-4 items-center">
 					{navLinks.map((link, index) => (
-						<div key={index} onClick={() => handleClick(link)} className="capitalize text-gray-100 cursor-pointer">
+						<div key={index} onClick={() => handleClick(link)} className={`capitalize cursor-pointer ${activeLink === link ? "text-[#fcaa18]": "text-gray-200  hover:text-gray-100"}`}>
 							{link}
 						</div>
 					))}

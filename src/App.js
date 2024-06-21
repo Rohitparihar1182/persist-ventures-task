@@ -1,13 +1,10 @@
-import "./App.css";
-import Banner from "./componenets/banner";
-import Navbar from "./componenets/navbar";
-import NewsGallery from "./componenets/newsGallery";
-import ScrollToTop from "./componenets/scrollToTop";
-
 import {
 	createBrowserRouter,
 	RouterProvider,
 } from "react-router-dom";
+import HomePage from './pages/home';
+import NewsPage from "./pages/news";
+import "./App.css";
 
 const router = createBrowserRouter([
 	{
@@ -17,22 +14,11 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: "about",
-		element: <div>About</div>,
+		path: "news",
+		element: <NewsPage />,
 	},
 ]);
 
 export default function App() {
 	return <RouterProvider router={router} />;
 }
-
-function HomePage() {
-	return (
-		<>
-			<Navbar />
-			<Banner />
-			<NewsGallery />
-			<ScrollToTop />
-		</>
-	);
-};

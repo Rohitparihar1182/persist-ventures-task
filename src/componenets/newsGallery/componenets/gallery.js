@@ -25,7 +25,7 @@ export default function Gallery({ data }) {
 		if(data === "prev") {
 			if(page > 0) setPage(page-1);
 		}else if(data === "next"){
-			if(page < numberOfPages) setPage(page+1);
+			if(page < numberOfPages-1) setPage(page+1);
 		}else{
 			if(Number.isInteger(data)){
 				setPage(data-1);
@@ -80,7 +80,7 @@ export default function Gallery({ data }) {
                 </div>
                 {
                     maxPages.map((pageNo, index) => (
-                        <div key={index} className={`flex justify-center items-center p-4 rounded-full aspect-square border border-white/50 cursor-pointer text-gray-300  transition ${page+1 === pageNo ? "text-[#fcaa18] border-[#fcaa18]" : "hover:border-white hover:text-white"}`} onClick={() => handlePage(pageNo)}>
+                        <div key={index} className={`flex justify-center items-center p-4 rounded-full aspect-square border  cursor-pointer  transition ${(page+1) === pageNo ? "text-[#fcaa18] border-[#fcaa18]" : "text-gray-300 border-white/50 hover:border-white hover:text-white"}`} onClick={() => handlePage(pageNo)}>
                             <div className="w-6 h-6 flex justify-center items-center font-semibold"><span>{pageNo}</span></div>
                         </div>
                     ))
