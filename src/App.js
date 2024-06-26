@@ -2,10 +2,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/home";
 import NewsPage from "./pages/news";
 import "./App.css";
-import Navbar from "./componenets/navbar";
+import Navbar from "./components/navbar";
 import SearchPage from "./pages/search";
-import ScrollTop from "./componenets/scrollTop";
-import Footer from "./componenets/footer";
+import ScrollTop from "./components/scrollTop";
+import Footer from "./components/footer";
 
 const router = createBrowserRouter([
 	{

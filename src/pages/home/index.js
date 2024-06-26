@@ -1,6 +1,6 @@
-import Banner from "../../componenets/banner";
-import NewsGallery from "../../componenets/newsGallery";
-import ScrollToTop from "../../componenets/scrollToTop";
+import Banner from "../../components/banner";
+import NewsGallery from "../../components/newsGallery";
+import ScrollToTop from "../../components/scrollToTop";
 
 export default function HomePage() {
 	return (

@@ -9,7 +9,7 @@ import {
 
 export default function Gallery({ searchResults }) {
 	return (
-		<div className="mt-16 p-8 max-w-6xl">
+		<div className="mt-2 p-8 max-w-6xl">
 			{searchResults?.map((item, index) => {
 				const query = createNewsApiSearchQuery(item)
 				return (
